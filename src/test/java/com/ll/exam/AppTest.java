@@ -9,6 +9,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
+
+    @Test
+    public void 등록(){
+        Scanner sc = TestUtill.genScanner("""
+                등록
+                명언1
+                작가1
+                종료
+                """);
+        ByteArrayOutputStream output =  TestUtill.setOutToByteArray();
+
+        new App(sc).run();
+
+        String rs = output.toString();
+        TestUtill.clearSetOutToByteArray(output);
+
+        assertTrue(rs.contains("명언 : "));
+        assertTrue(rs.contains("작가 : "));
+
+    }
+
     @Test
     public void 종료_명령(){
         Scanner sc = TestUtill.genScanner("종료");
